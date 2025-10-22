@@ -3,10 +3,11 @@ import asyncio
 import sys
 import subprocess
 import argparse
-from pathlib import Path
+from pathlib import Path, PosixPath
 import threading
 from PIL import Image, ImageDraw, ImageFont, ImageColor
 import pystray
+from os import environ
 
 
 class TrayApp:
@@ -204,15 +205,24 @@ def main():
 
     cmd_path = Path(args.command[0])
 
-    if not cmd_path.parent == '.':
+    if cmd_path.parent == PosixPath('.'):
         pwd_path = Path.cwd() / cmd_path.name
 
         if pwd_path.exists():
             args.command[0] = str(pwd_path)
-            print(f"Notice: '{cmd_path}' not found. Will use '{pwd_path}' instead.")
+            print(f"Notice: '{cmd_path}' not directly found, but in current directory. Will use '{pwd_path}' instead.")
         else:
-            print(f"Error: Command file '{cmd_path}' not found (also not in current directory).")
-            _exit = True
+            _found = False
+            for dir_path in map(Path, environ['PATH'].split(':')):
+                if dir_path.is_dir() and Path.exists(dir_path / cmd_path.name):
+                    _found = True
+                    print(f"Notice: '{cmd_path}' not directly found. Using '{dir_path / cmd_path.name}' from PATH.")
+                    args.command[0] = str(dir_path / cmd_path.name)
+                    break
+
+            if not _found:
+                print(f"Error: Command file '{cmd_path}' not found (also not in current directory).")
+                _exit = True
 
     if _exit:
         sys.exit(1)
