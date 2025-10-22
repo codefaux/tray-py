@@ -230,5 +230,7 @@ if __name__ == '__main__':
     main()
 
 # Test args:
-# --tooltip "Test me" --bg-color='rgb(0%, 5%, 100%)' -fc black -sdc="#CC0000" --running-dot-color "rgba(0, 128, 0, 128)" -rfc 'hsl(15,0%,0%)' -sfc "#aaf" --running-bg-color="aquamarine" -sbc 'hsv(15, 50%, 10%)' -- vban_emitter_monitor.sh --tooltip "Safe: Not parsed by tray.py"
-# --tooltip "Test me" --bg-color='rgb(0%, 5%, 100%)' -fc black -sdc="#CC0000" --running-dot-color "rgba(0, 128, 0, 128)" -rfc 'hsl(15,0%,0%)' -sfc "#aaf" --running-bg-color="aquamarine" -sbc 'hsv(15, 50%, 10%)' vban_emitter_monitor.sh --tooltip "Still Safe: Not parsed by tray.py"
+# --tooltip "Test me" --bg-color='rgb(0%, 5%, 100%)' -fc black -sdc="#CC0000" --running-dot-color "rgba(0, 128, 0, 128)" -rfc 'hsl(15,0%,0%)' -sfc "#aaf" --running-bg-color="aquamarine" -sbc 'hsv(15, 50%, 10%)' -- test_script.sh --tooltip "Safe: Not parsed by tray.py"
+# --tooltip "Test me" --bg-color='rgb(0%, 5%, 100%)' -fc black -sdc="#CC0000" --running-dot-color "rgba(0, 128, 0, 128)" -rfc 'hsl(15,0%,0%)' -sfc "#aaf" --running-bg-color="aquamarine" -sbc 'hsv(15, 50%, 10%)' test_script.sh --tooltip "Still Safe: Not parsed by tray.py"
+# --id '2' --tooltip "VBAN Monitor for Notifications" -bg black --running-dot-color blue -- /usr/bin/vban_emitter --ipaddress=192.168.1.1 -p 6890 --streamname Monitor
+# --id 'q' -- vban_emitter --ipaddress=192.168.1.1 -p 6890 --streamname Monitor
