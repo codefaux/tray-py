@@ -148,7 +148,7 @@ def main():
     parser.add_argument('-sdc', '--stopped-dot-color', default="red",
                         help='Color for dot in "Stopped" state. (default: red)')
 
-    parser.add_argument('-rdc', '--running-dot-color', default="red",
+    parser.add_argument('-rdc', '--running-dot-color', default="green",
                         help='Color for dot in "Running" state. (default: green)')
 
     parser.add_argument('-sfc', '--stopped-font-color',
